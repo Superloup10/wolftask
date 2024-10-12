@@ -34,3 +34,31 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# IDE specific
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# logs
+*.log
+
+# OS generated files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# lockfiles
+package-lock.json
+yarn.lock
+.pnpm-lock.yaml
+
+# TailwindCSS 
+postcss.config.js
+tailwind.config.js
+
+# Other build tool config files
+*.tmproj
+*.tm_build_errors
