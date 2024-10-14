@@ -33,7 +33,8 @@ export default function TaskCard({ task }: { task: Task }) {
                         </Button>
                     }
                            title="Modifier une tâche"
-                           description="Formulaire de modification de tâche" isOpen={isEditModalOpen} onClose={closeEditModal}
+                           description="Formulaire de modification de tâche" isOpen={isEditModalOpen}
+                           onClose={closeEditModal}
                            footer={
                                <>
                                    <Button variant="default" onClick={handleAddClick}>Modifier</Button>
@@ -51,12 +52,13 @@ export default function TaskCard({ task }: { task: Task }) {
             <CardFooter>
                 <Modal action={<Button variant="destructive" onClick={openCloseModal}>Supprimer</Button>}
                        title={`Voulez-vous vraiment supprimer la tâche #${task.id} ?`}
-                       description="" isOpen={isDeleteModalOpen} onClose={closeCloseModal}
-                       footer={<>
-                           <Button variant="default" onClick={openCloseModal}>Confirmer</Button>
-                           <Button variant="destructive" onClick={closeCloseModal}>Annuler</Button>
-                       </>}>
-                </Modal>
+                       description="Cette action ne peut-être annuler." isOpen={isDeleteModalOpen} onClose={closeCloseModal}
+                       footer={
+                           <>
+                               <Button variant="default" onClick={openCloseModal}>Confirmer</Button>
+                               <Button variant="destructive" onClick={closeCloseModal}>Annuler</Button>
+                           </>
+                       }/>
             </CardFooter>
         </Card>
     )

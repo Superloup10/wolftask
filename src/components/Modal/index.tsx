@@ -12,24 +12,24 @@ interface ModalProps {
     action: ReactNode;
     title: string;
     description: string;
-    children: ReactNode;
+    children?: ReactNode;
     footer: ReactNode;
     isOpen: boolean;
     onClose: () => void;
 }
 
-export default function Modal(props: ModalProps) {
+export default function Modal({ action, title, description, children = null, footer, isOpen, onClose }: ModalProps) {
     return (
-        <Dialog open={props.isOpen} onOpenChange={(open) => (!open && props.onClose())}>
-            <DialogTrigger asChild>{props.action}</DialogTrigger>
+        <Dialog open={isOpen} onOpenChange={(open) => (!open && onClose())}>
+            <DialogTrigger asChild>{action}</DialogTrigger>
             <DialogContent>
                 <DialogHeader>
-                    <DialogTitle>{props.title}</DialogTitle>
-                    {props.description !== '' && <DialogDescription>{props.description}</DialogDescription>}
+                    <DialogTitle>{title}</DialogTitle>
+                    {description !== '' && <DialogDescription>{description}</DialogDescription>}
                 </DialogHeader>
-                {props.children}
+                {children}
                 <DialogFooter>
-                    {props.footer}
+                    {footer}
                 </DialogFooter>
             </DialogContent>
         </Dialog>
