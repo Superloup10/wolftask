@@ -25,7 +25,7 @@ export default function Modal(props: ModalProps) {
             <DialogContent>
                 <DialogHeader>
                     <DialogTitle>{props.title}</DialogTitle>
-                    <DialogDescription>{props.description}</DialogDescription>
+                    {props.description !== '' && <DialogDescription>{props.description}</DialogDescription>}
                 </DialogHeader>
                 {props.children}
                 <DialogFooter>

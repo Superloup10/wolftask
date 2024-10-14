@@ -9,11 +9,13 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Textarea } from '@/components/ui/textarea';
 import { Priority } from '@/domain/model/Priority';
 import { Status } from '@/domain/model/Status';
+import { Task, TaskWithoutId } from '@/domain/model/Task';
+import useTask from '@/hooks/useTask';
 import { cn } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { format } from 'date-fns';
 import { CalendarIcon } from 'lucide-react';
-import { RefObject } from 'react';
+import { RefObject, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
@@ -25,20 +27,40 @@ const formSchema = z.object({
     dueDate: z.date(),
 });
 
-export default function TaskForm({ formRef }: { formRef: RefObject<HTMLFormElement> }) {
+interface FormProps {
+    formRef: RefObject<HTMLFormElement>
+    taskToUpdate?: Task;
+    editMode: boolean;
+}
+
+export default function TaskForm({ formRef, taskToUpdate, editMode }: FormProps) {
+    const { tasks, addTask, editTask } = useTask();
+    const defaultTask = {
+        name: '',
+        description: '',
+        status: Status.PENDING,
+        priority: Priority.LOW,
+        dueDate: new Date()
+    };
+    const task = editMode ? tasks.find(t => t.id === taskToUpdate!!.id) as TaskWithoutId ?? defaultTask : defaultTask;
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
-        defaultValues: {
-            name: '',
-            description: '',
-            status: Status.PENDING,
-            priority: Priority.LOW,
-            dueDate: new Date(),
-        }
+        defaultValues: task,
+        mode: 'onChange',
     });
 
+    useEffect(() => {
+        if (editMode && taskToUpdate) {
+            form.reset(task);
+        }
+    }, [taskToUpdate, editMode, form]);
+
     const onSubmit = (data: z.infer<typeof formSchema>) => {
-        console.log(data);
+        if (editMode) {
+            editTask(taskToUpdate!!.id, data);
+        } else {
+            addTask(data);
+        }
     };
 
     return (

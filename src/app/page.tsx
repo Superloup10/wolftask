@@ -41,10 +41,10 @@ export default function Home() {
                                <Button variant="default" onClick={handleAddClick}>Ajouter</Button>
                                <Button variant="destructive" onClick={closeModal}>Annuler</Button>
                            </>}>
-                        <TaskForm formRef={taskFormRef}/>
+                        <TaskForm formRef={taskFormRef} editMode={false}/>
                     </Modal>
                 </div>
-                <TaskList/>
+                <TaskList />
             </main>
         </>
     );

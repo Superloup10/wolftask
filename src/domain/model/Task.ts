@@ -9,3 +9,5 @@ export interface Task {
     priority: Priority;
     dueDate: Date;
 }
+
+export type TaskWithoutId = Omit<Task, 'id'>;

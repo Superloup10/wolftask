@@ -1,27 +1,8 @@
 import TaskCard from '@/components/TaskCard';
-import { Priority } from '@/domain/model/Priority';
-import { Status } from '@/domain/model/Status';
-import { Task } from '@/domain/model/Task';
+import useTask from '@/hooks/useTask';
 
 export default function TaskList() {
-    const tasks: Task[] = [
-        {
-            id: 1,
-            name: 'Sample Task',
-            description: 'This is a sample task description',
-            status: Status.PENDING,
-            priority: Priority.LOW,
-            dueDate: new Date()
-        },
-        {
-            id: 2,
-            name: 'Sample Task 2',
-            description: 'This is a sample task description 2',
-            status: Status.PENDING,
-            priority: Priority.LOW,
-            dueDate: new Date()
-        }
-    ];
+    const { tasks } = useTask();
 
     return (
         <div
