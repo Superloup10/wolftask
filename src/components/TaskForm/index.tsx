@@ -105,7 +105,7 @@ export default function TaskForm({ formRef }: { formRef: RefObject<HTMLFormEleme
                 <FormField control={form.control} name="dueDate" render={({ field }) => (
                     <FormItem className="flex flex-col">
                         <FormLabel>DueDate</FormLabel>
-                        <Popover>
+                        <Popover modal>
                             <PopoverTrigger asChild>
                                 <FormControl>
                                     <Button variant="outline"
