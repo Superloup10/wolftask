@@ -18,16 +18,26 @@ export default function useTask(): TaskHook {
             id: 1,
             name: 'Sample Task',
             description: 'This is a sample task description',
+            content: 'This is a sample task content',
+            tags: ['tag1', 'tag2'],
             status: Status.PENDING,
             priority: Priority.LOW,
+            assignTo: undefined,
+            createdAt: new Date(),
+            updatedAt: undefined,
             dueDate: new Date()
         },
         {
             id: 2,
             name: 'Sample Task 2',
             description: 'This is a sample task description 2',
+            content: 'This is a sample task content 2',
+            tags: ['tag1', 'tag2'],
             status: Status.PENDING,
             priority: Priority.LOW,
+            assignTo: undefined,
+            createdAt: new Date(),
+            updatedAt: undefined,
             dueDate: new Date()
         }
     ]);

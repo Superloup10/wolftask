@@ -1,3 +1,4 @@
+"use client"
 import TaskCard from '@/components/TaskCard';
 import useTask from '@/hooks/useTask';
 
